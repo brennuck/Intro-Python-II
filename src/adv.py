@@ -47,43 +47,12 @@ room['treasure'].s_to = room['narrow']
 
 player = Player("Yada", room['outside'])
 
-def move(user_input):
-    if user_input == 'N':
-        if player.current_room.n_to is None:
-            print('!--- You ran into a wall ---!')
-            return player.current_room
-        else:
-            return player.current_room.n_to
-    
-    if user_input == 'E':
-        if player.current_room.e_to is None:
-            print('!--- You ran into a wall ---!')
-            return player.current_room
-        else:
-            return player.current_room.e_to
-
-    if user_input == 'S':
-        if player.current_room.s_to is None:
-            print('!--- You ran into a wall ---!')
-            return player.current_room
-        else:
-            return player.current_room.s_to
-
-    if user_input == 'W':
-        if player.current_room.w_to is None:
-            print('!--- You ran into a wall ---!')
-            return player.current_room
-        else:
-            return player.current_room.w_to
-
-    if user_input == 'Q':
-        print('\nBye Bye\n')
-        sys.exit()
-
+valid_directions = ['S', 'E', 'W', 'N']
 
 user_input = None
 while user_input != 'Q':
-    print(f"\n{player.current_room.name}\n{player.current_room.description}")
+    print(f"\n{player.current_room}\n{player.current_room.description}")
     
     user_input = input("\nEnter N, E, S, W to move\nor Q to quit\n")
-    player.current_room = move(user_input)
+    if user_input in valid_directions:
+        player.move(user_input)

@@ -8,3 +8,16 @@ class Player:
 
     def __str__(self):
         return f"Name: {self.name}\nCurrent Room: {self.current_room}"
+
+    def move(self, direction):
+        movement = {
+            'S': self.current_room.s_to,
+            'N': self.current_room.n_to,
+            'W': self.current_room.w_to,
+            'E': self.current_room.e_to
+        }
+        # self.current_room = movement[direction]
+        if movement[direction] is None:
+            print('!--- You ran into a wall ---!')
+        else:
+            self.current_room = movement[direction]
