@@ -5,3 +5,7 @@ class Room:
     def __init__(self, room, description):
         self.room = room
         self.description = description
+        self.n_to = None
+        self.e_to = None
+        self.s_to = None
+        self.w_to = None

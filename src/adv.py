@@ -1,4 +1,6 @@
+import sys
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -49,3 +51,41 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+player = Player("Yada", room['outside'])
+
+def move(user_input):
+    if user_input == 'n':
+        if player.current_room.n_to is None:
+            print('\nYou ran into a wall\n')
+        else:
+            return player.current_room.n_to
+    
+    if user_input == 'e':
+        if player.current_room.e_to is None:
+            print('\nYou ran into a wall\n')
+        else:
+            return player.current_room.e_to
+
+    if user_input == 's':
+        if player.current_room.s_to is None:
+            print('\nYou ran into a wall\n')
+        else:
+            return player.current_room.s_to
+
+    if user_input == 'w':
+        if player.current_room.w_to is None:
+            print('\nYou ran into a wall\n')
+        else:
+            return player.current_room.w_to
+
+    elif user_input != 'q':
+        print('\nYou can only go N, E, S, W')
+
+
+user_input = None
+while user_input != 'q':
+    print(f"\n{player.current_room.name}\n{player.current_room.description}")
+    
+    user_input = input("\nEnter N, E, S, W to move\n or Q to quit\n")
+    player.current_room = move(user_input)
