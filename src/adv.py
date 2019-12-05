@@ -55,25 +55,25 @@ room['treasure'].s_to = room['narrow']
 player = Player("Yada", room['outside'])
 
 def move(user_input):
-    if user_input == 'n':
+    if user_input == 'N':
         if player.current_room.n_to is None:
             print('\nYou ran into a wall\n')
         else:
             return player.current_room.n_to
     
-    if user_input == 'e':
+    if user_input == 'E':
         if player.current_room.e_to is None:
             print('\nYou ran into a wall\n')
         else:
             return player.current_room.e_to
 
-    if user_input == 's':
+    if user_input == 'S':
         if player.current_room.s_to is None:
             print('\nYou ran into a wall\n')
         else:
             return player.current_room.s_to
 
-    if user_input == 'w':
+    if user_input == 'W':
         if player.current_room.w_to is None:
             print('\nYou ran into a wall\n')
         else:
