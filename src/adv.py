@@ -5,22 +5,15 @@ from player import Player
 # Declare all the rooms
 
 room = {
-    'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+    'outside':  Room("-- Outside Cave Entrance --", "- North of you, the cave mount beckons -"),
 
-    'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
+    'foyer':    Room("-- Foyer --", """- Dim light filters in from the south. Dusty passages run north and east. -"""),
 
-    'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
-into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
+    'overlook': Room("-- Grand Overlook --", """- A steep cliff appears before you, falling into the darkness. Ahead to the north, a light flickers in the distance, but there is no way across the chasm. -"""),
 
-    'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
+    'narrow':   Room("-- Narrow Passage --", """- The narrow passage bends here from west to north. The smell of gold permeates the air. -"""),
 
-    'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
-chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+    'treasure': Room("-- Treasure Chamber --", """- You've found the long-lost treasure chamber! Sadly, it has already been completely emptied by earlier adventurers. The only exit is to the south. -"""),
 }
 
 
@@ -57,35 +50,40 @@ player = Player("Yada", room['outside'])
 def move(user_input):
     if user_input == 'N':
         if player.current_room.n_to is None:
-            print('\nYou ran into a wall\n')
+            print('!--- You ran into a wall ---!')
+            return player.current_room
         else:
             return player.current_room.n_to
     
     if user_input == 'E':
         if player.current_room.e_to is None:
-            print('\nYou ran into a wall\n')
+            print('!--- You ran into a wall ---!')
+            return player.current_room
         else:
             return player.current_room.e_to
 
     if user_input == 'S':
         if player.current_room.s_to is None:
-            print('\nYou ran into a wall\n')
+            print('!--- You ran into a wall ---!')
+            return player.current_room
         else:
             return player.current_room.s_to
 
     if user_input == 'W':
         if player.current_room.w_to is None:
-            print('\nYou ran into a wall\n')
+            print('!--- You ran into a wall ---!')
+            return player.current_room
         else:
             return player.current_room.w_to
 
-    elif user_input != 'q':
-        print('\nYou can only go N, E, S, W')
+    if user_input == 'Q':
+        print('\nBye Bye\n')
+        sys.exit()
 
 
 user_input = None
-while user_input != 'q':
+while user_input != 'Q':
     print(f"\n{player.current_room.name}\n{player.current_room.description}")
     
-    user_input = input("\nEnter N, E, S, W to move\n or Q to quit\n")
+    user_input = input("\nEnter N, E, S, W to move\nor Q to quit\n")
     player.current_room = move(user_input)
